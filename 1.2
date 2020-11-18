@@ -1,0 +1,31 @@
+import math
+
+abc = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z']
+znaki = ['a','e','i','o',' ']
+filepath = 'D:\Meme\WUZ3_zad1_liczby.txt'
+answer = ''
+
+def numToChar(id):
+	if id <= 109: 
+		return znaki[id//22] + abc[id % 22]
+	elif id <= 219:
+		return abc[(id-110) // 5] + znaki[(id-110) % 5]
+	elif id <= 245:
+		return chr(97 + (id - 220))
+	elif id == 246 or id == 255:
+		return ' '
+
+
+f = open(filepath , 'r')
+x = f.read()
+
+array = [int(x) for x in x.split()]
+for x in array:
+	answer += numToChar(x)
+
+print(answer)
+
+
+
+
+
