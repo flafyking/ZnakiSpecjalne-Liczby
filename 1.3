@@ -1,0 +1,47 @@
+import math
+
+abc = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z']
+znaki = ['a','e','i','o',' ']
+filepath = 'D:\Meme\WUZ3_zad1_tekst.txt'
+answer = []
+character = ''
+
+def charToNum(txt):
+	if len(txt) == 2:
+		if txt[1] in abc:
+			return ((znaki.index(txt[0]) * 21) + znaki.index(txt[0])) + abc.index(txt[1])
+		if txt[0] in abc:
+			return 110 + (abc.index(txt[0]) * 5) + znaki.index(txt[1])
+	else:
+		return 220 + ord(txt) - 97
+
+f = open(filepath , 'r')
+x = f.read()
+i = 0
+
+while i < len(x) - 1:
+	if x[i] == '\n':
+		i += 1
+	if x[i] in znaki:
+		if x[i+1] in abc:
+			character = x[i] + x[i+1]
+			i += 2
+		else: 
+			character = x[i]
+			i += 1
+	elif x[i] in abc:
+		if x[i+1] in znaki:
+			character = x[i] + x[i+1]
+			i += 2
+		else: 
+			character = x[i]
+			i += 1
+
+	answer.append(charToNum(character))
+answer.append(charToNum(x[len(x) - 1]))
+
+print(answer)
+
+
+
+
